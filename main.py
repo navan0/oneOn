@@ -1,13 +1,14 @@
 import cv2
 import os
 
-w1 = 100
-h1 = 100
+
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
 epoches = 3
 image = cv2.imread("/home/navaneeth/work/oneon/test.jpg")
 (h, w) = image.shape[:2]
 center = (w / 2, h / 2)
+w1 = 100
+h1 = 100
 
 
 def rotate(image):
