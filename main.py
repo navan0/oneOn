@@ -7,8 +7,6 @@ epoches = 3
 image = cv2.imread("/home/navaneeth/work/oneon/test.jpg")
 (h, w) = image.shape[:2]
 center = (w / 2, h / 2)
-w1 = 100
-h1 = 100
 
 
 def rotate(image):
@@ -19,16 +17,14 @@ def rotate(image):
 
 
 def resize(image):
+    r = h/image.shape[1]
+    dim = (w, int(image.shape[0]*r))
     resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
     resiz_imgs = os.path.join(TARGER_DIR, "resiz_" + str(i) + ".png")
     cv2.imwrite(resiz_imgs, resized)
 
 
 for i in range(epoches):
-    r = h/image.shape[1]
-    dim = (w, int(image.shape[0]*r))
     rotate(image)
     resize(image)
-    w1 = w1+4
-    h1 = h1+4
     i = i+1
