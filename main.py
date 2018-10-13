@@ -33,11 +33,11 @@ def image_b(image):
         blur_imgs = os.path.join(TARGER_DIR, "blur_" + str(i) + ".png")
         median = cv2.medianBlur(image, 5)
         mblur_imgs = os.path.join(TARGER_DIR, "mblur_" + str(i) + ".png")
-        Bilateral = cv2.bilateralFilter(image, i+4, i+75, i+75)
+        bilateral = cv2.bilateralFilter(image, i+4, i+75, i+75)
         bblur_imgs = os.path.join(TARGER_DIR, "bblur_" + str(i) + ".png")
         cv2.imwrite(blur_imgs, blur)
         cv2.imwrite(mblur_imgs, median)
-        cv2.imwrite(bblur_imgs, Bilateral)
+        cv2.imwrite(bblur_imgs, bilateral)
 
 
 for i in range(epoches):
