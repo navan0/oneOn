@@ -1,10 +1,11 @@
 import cv2
+from scipy import misc
 import os
-
-
+from scipy import ndimage
+import matplotlib.pyplot as plt
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
-epoches = 3
 image = cv2.imread("/home/navaneeth/work/oneon/test.jpg")
+epoches = 3
 h1 = 100
 w1 = 100
 
@@ -26,9 +27,17 @@ def resize(image):
     cv2.imwrite(resiz_imgs, resized)
 
 
+def image_b(image):
+    for i in range(epoches):
+        blur = cv2.blur(image, (i+4, 5))
+        blur_imgs = os.path.join(TARGER_DIR, "blur_" + str(i) + ".png")
+        cv2.imwrite(blur_imgs, blur)
+
+
 for i in range(epoches):
     rotate(image)
     resize(image)
+    image_b(image)
     h1 = h1*2
     w1 = w1*2
     i = i+1
