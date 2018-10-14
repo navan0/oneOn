@@ -3,18 +3,14 @@ import os
 import PIL
 from PIL import Image
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
-basewidth = 300
-image0 = Image.open('/home/navaneeth/work/oneon/kurb.jpg')
+basewidth = 600
+image0 = Image.open('/home/navaneeth/work/lobster.jpg')
 wpercent = (basewidth / float(image0.size[0]))
 hsize = int((float(image0.size[1]) * float(wpercent)))
 image0 = image0.resize((basewidth, hsize), PIL.Image.ANTIALIAS)
 image0.save('resized_image.jpg')
 image = cv2.imread("/home/navaneeth/work/oneon/resized_image.jpg")
-
-
-
-
-epoches = 3
+epoches = 1
 h1 = 100
 w1 = 100
 
