@@ -1,10 +1,19 @@
 import cv2
-from scipy import misc
 import os
-from scipy import ndimage
-import matplotlib.pyplot as plt
+import PIL
+from PIL import Image
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
-image = cv2.imread("/home/navaneeth/work/oneon/test.jpg")
+basewidth = 300
+image0 = Image.open('/home/navaneeth/work/oneon/kurb.jpg')
+wpercent = (basewidth / float(image0.size[0]))
+hsize = int((float(image0.size[1]) * float(wpercent)))
+image0 = image0.resize((basewidth, hsize), PIL.Image.ANTIALIAS)
+image0.save('resized_image.jpg')
+image = cv2.imread("/home/navaneeth/work/oneon/resized_image.jpg")
+
+
+
+
 epoches = 3
 h1 = 100
 w1 = 100
