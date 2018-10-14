@@ -1,6 +1,5 @@
 import cv2
 import os
-import sys
 import PIL
 from PIL import Image
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
