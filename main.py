@@ -1,5 +1,6 @@
 import cv2
 import os
+import sys
 import PIL
 from PIL import Image
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
@@ -59,3 +60,5 @@ for i in range(epoches):
     h1 = h1*2
     w1 = w1*2
     i = i+1
+
+os.system("rm /home/navaneeth/work/oneon/resized_image.jpg")
