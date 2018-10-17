@@ -57,3 +57,4 @@ for i in range(epoches):
     i = i+1
 
 os.system("rm /home/navaneeth/work/oneon/resized_image.jpg")
+# deleted the resized image
