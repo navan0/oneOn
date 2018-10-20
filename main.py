@@ -1,10 +1,11 @@
 import cv2
 import os
 import PIL
+import sys
 from PIL import Image
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
 basewidth = 600
-image0 = Image.open('/home/navaneeth/work/lobster.jpg')
+image0 = Image.open('/home/navaneeth/work/oneon/test.jpg')
 wpercent = (basewidth / float(image0.size[0]))
 hsize = int((float(image0.size[1]) * float(wpercent)))
 image0 = image0.resize((basewidth, hsize), PIL.Image.ANTIALIAS)
@@ -48,10 +49,18 @@ def image_b(image):
         cv2.imwrite(gblur_imgs, gaussian)
 
 
+def image_grey(image):
+    for i in range(epoches):
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        resiz_imgs = os.path.join(TARGER_DIR, "grey_" + str(i) + ".png")
+        cv2.imwrite(resiz_imgs, gray_image)
+
+
 for i in range(epoches):
     rotate(image)
     resize(image)
     image_b(image)
+    image_grey(image)
     h1 = h1*2
     w1 = w1*2
     i = i+1
