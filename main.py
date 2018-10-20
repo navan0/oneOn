@@ -1,8 +1,8 @@
 import cv2
 import os
 import PIL
-import sys
 from PIL import Image
+import numpy as np
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
 basewidth = 600
 image0 = Image.open('/home/navaneeth/work/oneon/test.jpg')
@@ -14,6 +14,8 @@ image = cv2.imread("/home/navaneeth/work/oneon/resized_image.jpg")
 epoches = 1
 h1 = 100
 w1 = 100
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
 
 def rotate(image):
@@ -56,11 +58,26 @@ def image_grey(image):
         cv2.imwrite(resiz_imgs, gray_image)
 
 
+def face_d(image):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    for (x,y,w,h) in faces:
+        img = cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,0),2)
+        roi_gray = gray[y:y+h, x:x+w]
+        roi_color = img[y:y+h, x:x+w]
+        face_ = os.path.join(TARGER_DIR, "face_" + str(i) + ".png")
+    cv2.imwrite(face_, img)
+
+
+
+
+
 for i in range(epoches):
     rotate(image)
     resize(image)
     image_b(image)
     image_grey(image)
+    face_d(image)
     h1 = h1*2
     w1 = w1*2
     i = i+1
