@@ -2,9 +2,11 @@ import cv2
 import os
 import PIL
 from PIL import Image
+import numpy as np
+
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
 basewidth = 600
-image0 = Image.open('/home/navaneeth/work/oneon/test.jpg')
+image0 = Image.open('/home/navaneeth/work/oneon/test2.png')
 wpercent = (basewidth / float(image0.size[0]))
 hsize = int((float(image0.size[1]) * float(wpercent)))
 image0 = image0.resize((basewidth, hsize), PIL.Image.ANTIALIAS)
@@ -69,11 +71,21 @@ def face_d(image):
         cv2.imwrite(face_, roi_color)
 
 
+def cont_(image):
+    imgray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+    ret, thresh = cv2.threshold(imgray, 127, 255, 0)
+    _,  contours, _ = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    imo = cv2.drawContours(image, contours, -1, (0, 255, 0), 3)
+    imo_ = os.path.join(TARGER_DIR, "cont_" + str(i) + ".png")
+    cv2.imwrite(imo_, imo)
+
+
 for i in range(epoches):
     rotate(image)
     resize(image)
     image_b(image)
     image_grey(image)
+    cont_(image)
     face_d(image)
     h1 = h1*2
     w1 = w1*2
