@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
 basewidth = 600
-image0 = Image.open('/home/navaneeth/work/oneon/test2.png')
+image0 = Image.open('/home/navaneeth/work/oneon/test.jpg')
 wpercent = (basewidth / float(image0.size[0]))
 hsize = int((float(image0.size[1]) * float(wpercent)))
 image0 = image0.resize((basewidth, hsize), PIL.Image.ANTIALIAS)
@@ -68,6 +68,7 @@ def face_d(image):
             roi_color = img[y:y+h, x:x+w]
             face_ = os.path.join(TARGER_DIR, "face_" + str(i) + ".png")
         cv2.imwrite(face_, roi_color)
+        print(faces)
 
 
 def detect_box(image, cropIt=True):
@@ -92,14 +93,15 @@ def cont_(image):
 
 def paste_image(image):
     for i in range(epoches):
-        im1 = Image.open('/home/navaneeth/work/oneon/test.jpg')
+        image = Image.fromarray(image)
         im2 = Image.open('/home/navaneeth/work/oneon/1.png')
         x, y = im2.size
-        im1.paste(im2, (0, 0, x, y))
-        im1.save("/home/navaneeth/work/oneon/detected/test_"+str(i)+".jpg", "JPEG")
+        image.paste(im2, (0, 0, x, y))
+        image.save("/home/navaneeth/work/oneon/detected/test_"+str(i)+".jpg", "JPEG")
 
 
 for i in range(epoches):
+    face_d(image)
     rotate(image)
     resize(image)
     image_b(image)
@@ -107,7 +109,6 @@ for i in range(epoches):
     cont_(image)
     paste_image(image)
     detect_box(image)
-    # face_d(image)
 
     h1 = h1*2
     w1 = w1*2
