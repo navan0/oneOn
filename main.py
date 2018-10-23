@@ -90,12 +90,22 @@ def cont_(image):
     cv2.imwrite(imo_, imo)
 
 
+def paste_image(image):
+    for i in range(epoches):
+        im1 = Image.open('/home/navaneeth/work/oneon/test.jpg')
+        im2 = Image.open('/home/navaneeth/work/oneon/1.png')
+        x, y = im2.size
+        im1.paste(im2, (0, 0, x, y))
+        im1.save("/home/navaneeth/work/oneon/detected/test_"+str(i)+".jpg", "JPEG")
+
+
 for i in range(epoches):
     rotate(image)
     resize(image)
     image_b(image)
     image_grey(image)
     cont_(image)
+    paste_image(image)
     detect_box(image)
     # face_d(image)
 
