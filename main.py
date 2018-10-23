@@ -74,7 +74,7 @@ def face_d(image):
 def cont_(image):
     imgray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     ret, thresh = cv2.threshold(imgray, 127, 255, 0)
-    _,  contours, _ = cv2.findContours(thresh, cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    _,  contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     imo = cv2.drawContours(image, contours, -1, (0, 255, 0), 3)
     imo_ = os.path.join(TARGER_DIR, "cont_" + str(i) + ".png")
     cv2.imwrite(imo_, imo)
