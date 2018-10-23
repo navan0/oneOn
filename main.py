@@ -2,8 +2,6 @@ import cv2
 import os
 import PIL
 from PIL import Image
-import numpy as np
-
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
 basewidth = 600
 image0 = Image.open('/home/navaneeth/work/oneon/test2.png')
