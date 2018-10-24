@@ -25,6 +25,7 @@ def rotate(image):
     rotated = cv2.warpAffine(image, M, (w, h))
     rotate_imgs = os.path.join(TARGER_DIR, "rota_" + str(i) + ".png")
     cv2.imwrite(rotate_imgs, rotated)
+    return 0
 
 
 def resize(image):
@@ -33,6 +34,7 @@ def resize(image):
     resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
     resiz_imgs = os.path.join(TARGER_DIR, "resiz_" + str(i) + ".png")
     cv2.imwrite(resiz_imgs, resized)
+    return 0
 
 
 def image_b(image):
@@ -49,6 +51,7 @@ def image_b(image):
         cv2.imwrite(mblur_imgs, median)
         cv2.imwrite(bblur_imgs, bilateral)
         cv2.imwrite(gblur_imgs, gaussian)
+        return 0
 
 
 def image_grey(image):
@@ -56,6 +59,8 @@ def image_grey(image):
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         resiz_imgs = os.path.join(TARGER_DIR, "grey_" + str(i) + ".png")
         cv2.imwrite(resiz_imgs, gray_image)
+        return 0
+
 
 
 def face_d(image):
@@ -69,6 +74,7 @@ def face_d(image):
             face_ = os.path.join(TARGER_DIR, "face_" + str(i) + ".png")
         cv2.imwrite(face_, roi_color)
         print(faces)
+        return 0
 
 
 def detect_box(image, cropIt=True):
@@ -80,6 +86,7 @@ def detect_box(image, cropIt=True):
     _, contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     imo_ = os.path.join(TARGER_DIR, "cont_" + str(i) + ".png")
     cv2.imwrite(imo_, edges)
+    return 0
 
 
 def cont_(image):
@@ -89,11 +96,13 @@ def cont_(image):
     imo = cv2.drawContours(image, contours, -1, (0, 255, 0), 3)
     imo_ = os.path.join(TARGER_DIR, "edge_" + str(i) + ".png")
     cv2.imwrite(imo_, imo)
+    return 0
+
 
 
 def paste_image(image):
     for i in range(epoches):
-        image = Image.fromarray(image)
+        image = Image.fromarray(image)  # converting numpy array into PIL image
         im2 = Image.open('/home/navaneeth/work/oneon/1.png')
         x, y = im2.size
         image.paste(im2, (0, 0, x, y))
