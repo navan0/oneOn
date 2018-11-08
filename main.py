@@ -2,6 +2,7 @@ import cv2
 import os
 from PIL import Image
 import numpy as np
+from gan import paste_image
 
 
 TARGER_DIR = './detected'
@@ -93,29 +94,19 @@ def cont_(image):
     _, contours, _ = cv2.findContours(
         thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     imo = cv2.drawContours(image, contours, -1, (0, 255, 0), 3)
-    imo_ = os.path.join(TARGER_DIR, "edge_" + str(i) + ".png")
+    imo_ = os.path.join(TARGER_DIR, "cont_" + str(i) + ".png")
     cv2.imwrite(imo_, imo)
     return 0
 
 
-def paste_image(image):
-    for i in range(epoches):
-        image = Image.fromarray(image)  # converting numpy array into PIL image
-        im2 = Image.open('./1.png')
-        x, y = im2.size
-        image.paste(im2, (0, 0, x, y))
-        image.save("./detected/test_"+str(i)+".jpg", "JPEG")
-    return 0
-
-
 for i in range(epoches):
+    paste_image(image)
     detect_face(image)
     rotate(image)
     resize(image)
     image_b(image)
     image_grey(image)
     cont_(image)
-    paste_image(image)
     detect_box(image)
 
     h1 = h1*2
