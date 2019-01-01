@@ -1,11 +1,16 @@
 import cv2
 import os
 from PIL import Image
+import argparse
 import numpy as np
+import sys
 from gan import paste_image
-#from gan import blend
+# from gan import blend
 
-
+parser = argparse.ArgumentParser()
+parser.add_argument('-e', '--epoches', help='Description', required=False)
+args = parser.parse_args()
+# print(args.epoches)
 TARGER_DIR = './detected'
 basewidth = 600
 image0 = Image.open('./test.jpg')
@@ -14,7 +19,7 @@ hsize = int((float(image0.size[1]) * float(wpercent)))
 image0 = image0.resize((basewidth, hsize), Image.ANTIALIAS)
 image0.save('resized_image.jpg')
 image = cv2.imread("./resized_image.jpg")
-epoches = 1
+epoches = int(args.epoches)
 h1 = 100
 w1 = 100
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -109,7 +114,7 @@ for i in range(epoches):
     image_grey(image)
     cont_(image)
     detect_box(image)
-   # blend(image)
+    # blend(image)
 
     h1 = h1*2
     w1 = w1*2
