@@ -3,7 +3,7 @@ import os
 from PIL import Image
 import numpy as np
 from gan import paste_image
-from gan import blend
+#from gan import blend
 
 
 TARGER_DIR = './detected'
@@ -109,7 +109,7 @@ for i in range(epoches):
     image_grey(image)
     cont_(image)
     detect_box(image)
-    blend(image)
+   # blend(image)
 
     h1 = h1*2
     w1 = w1*2
