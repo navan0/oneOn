@@ -3,12 +3,11 @@ import os
 from PIL import Image
 import argparse
 import numpy as np
-import sys
 from gan import paste_image
 # from gan import blend
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-e', '--epoches', help='Description', required=False)
+parser.add_argument('-e', '--epoches', help='add number as epoches . eg: python -e 5', required=True)
 args = parser.parse_args()
 # print(args.epoches)
 TARGER_DIR = './detected'
