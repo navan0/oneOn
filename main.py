@@ -29,7 +29,7 @@ def rotate(image):
     (h, w) = image.shape[:2]
     center = (w / 2, h / 2)
     M = cv2.getRotationMatrix2D(center, 180, 1.0)
-    rotated = cv2.warpAffine(image, M, (w, h))
+    rotated = cv2.warpAffine(image, M, (w+i, h+i))
     rotate_imgs = os.path.join(TARGER_DIR, "rota_" + str(i) + ".png")
     cv2.imwrite(rotate_imgs, rotated)
     return 0
@@ -62,11 +62,10 @@ def image_b(image):
 
 
 def image_grey(image):
-    for i in range(epoches):
-        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        resiz_imgs = os.path.join(TARGER_DIR, "grey_" + str(i) + ".png")
-        cv2.imwrite(resiz_imgs, gray_image)
-    return 0
+
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    resiz_imgs = os.path.join(TARGER_DIR, "grey_" + str(i) + ".png")
+    cv2.imwrite(resiz_imgs, gray_image)
 
 
 def detect_face(image):
@@ -88,30 +87,18 @@ def detect_box(image, cropIt=True):
     edges = cv2.Canny(image_blurred, 100, 300, apertureSize=3)
     _, contours, _ = cv2.findContours(
         edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    imo_ = os.path.join(TARGER_DIR, "cont_" + str(i) + ".png")
+    imo_ = os.path.join(TARGER_DIR, "box_" + str(i) + ".png")
     cv2.imwrite(imo_, edges)
     return 0
 
 
-def cont_(image):
-    imgray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    ret, thresh = cv2.threshold(imgray, 127, 255, 0)
-    _, contours, _ = cv2.findContours(
-        thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    imo = cv2.drawContours(image, contours, -1, (0, 255, 0), 3)
-    imo_ = os.path.join(TARGER_DIR, "cont_" + str(i) + ".png")
-    cv2.imwrite(imo_, imo)
-    return 0
-
-
 for i in range(epoches):
+    rotate(image)
     paste_image(image)
     detect_face(image)
-    rotate(image)
     resize(image)
     image_b(image)
     image_grey(image)
-    cont_(image)
     detect_box(image)
     # blend(image)
 
