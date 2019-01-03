@@ -5,5 +5,6 @@
 
 ##usage
 
-''' eg : python main.py -e 4 '''
+```eg : python main.py -e 4 ```
+
 ## -e : epoches 
