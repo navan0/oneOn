@@ -5,7 +5,7 @@ import argparse
 import numpy as np
 from gan import paste_image
 # from gan import blend
-
+# from gan import faceBlend
 parser = argparse.ArgumentParser()
 parser.add_argument('-e', '--epoches', help='add number as epoches . eg: python -e 5', required=True)
 args = parser.parse_args()
