@@ -7,4 +7,4 @@
 
 ```eg : python main.py -e 4 ```
 
-## -e : epoches 
+-e : epoches 
