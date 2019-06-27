@@ -7,7 +7,17 @@ from gan import paste_image
 # from gan import blend
 # from gan import faceBlend
 parser = argparse.ArgumentParser()
-parser.add_argument('-e', '--epoches', help='add number as epoches . eg: python -e 5', required=True)
+parser.add_argument('-e', '--epoches', help='add number as epoches . eg: python -e 5', required=T
+
+
+
+
+
+
+
+
+
+                    \\\\\\\\\\\\\\\rue)
 args = parser.parse_args()
 # print(args.epoches)
 TARGER_DIR = '/home/navaneeth/work/oneon/detected'
@@ -17,7 +27,7 @@ wpercent = (basewidth / float(image0.size[0]))
 hsize = int((float(image0.size[1]) * float(wpercent)))
 image0 = image0.resize((basewidth, hsize), Image.ANTIALIAS)
 image0.save('resized_image.jpg')
-image = cv2.imread("resized_image.jpg")
+image = cv2.imread("/home/navaneeth/work/oneon/")
 epoches = int(args.epoches)
 h1 = 100
 w1 = 100
@@ -99,12 +109,12 @@ for i in range(epoches):
     resize(image)
     image_b(image)
     image_grey(image)
-    #detect_box(image)
+    detect_box(image)
     # blend(image)
 
     h1 = h1*2
     w1 = w1*2
     i = i+1
 
-os.system("rm /home/navaneeth/work/oneon/resized_image.jpg")
+os.system("rm ./resized_image.jpg")
 # delete the resized image
