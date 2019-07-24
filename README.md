@@ -1,4 +1,4 @@
-# oneOn image dataset generator
+# oneOn image augmentation library
 -------------------------------
 oneOn is a image augmentation library that generate datasets,which can manipulate many diffrent images from a single image input
 
